@@ -27,7 +27,14 @@ namespace WpfHesla
 
         private void switchFormButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (inputHeslo.Text == "heslo" && inputJmeno.Text == "jmeno")
+            {
+                MessageBox.Show("vojtech test text");
+            }
+            else
+            {
+                MessageBox.Show("spatny format jmena nebo hesla");
+            }
         }
     }
 }
