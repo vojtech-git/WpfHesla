@@ -12,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace WpfHesla
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -27,13 +25,19 @@ namespace WpfHesla
 
         private void switchFormButton_Click(object sender, RoutedEventArgs e)
         {
-            if (inputHeslo.Text == "heslo" && inputJmeno.Text == "jmeno")
+            Regex regex = new Regex(@"^(?=.*\d).{6,15}$");
+
+            if (inputJmeno.Text == "" || inputHeslo.Text == "")
             {
-                MessageBox.Show("vojtech test text");
+                MessageBox.Show("Nezadal jste heslo nebo jméno.");
             }
+            else if (regex.IsMatch(inputHeslo.Text))
+            {
+                MessageBox.Show("Byl jste prihlášen.");
+            }            
             else
             {
-                MessageBox.Show("spatny format jmena nebo hesla");
+                MessageBox.Show("Špatny formát hesla.");
             }
         }
     }
